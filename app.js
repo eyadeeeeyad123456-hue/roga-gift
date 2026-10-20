@@ -123,12 +123,6 @@ const songs = [
     cover: 'assets/اغاني تحبها/انا حنيت.jpg' 
   },
   { 
-    title: 'Mind Over Matter', 
-    artist: 'Young the Giant', 
-    file: 'mind over matter.mp3', 
-    cover: 'assets/اغاني تحبها/mind over matter.jpeg' 
-  },
-  { 
     title: 'Impossible', 
     artist: 'James Arthur', 
     file: 'James Arthur - Impossible .mp3', 
