@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f7dedf">
+  <title>اعتذار من القلب لروجا 🎀🤍</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="admin-trigger" aria-label="لوحة التعديل" title="لوحة التعديل">✎</button>
+  
+  <!-- نافذة طلب رمز الإدارة -->
+  <div id="admin-pin-dialog" class="pin-dialog-backdrop" aria-hidden="true">
+    <div class="pin-dialog">
+      <button class="close-pin-dialog" id="close-pin-dialog" aria-label="إغلاق">×</button>
+      <div class="pin-icon">🎀 🔐</div>
+      <h3>وضع التعديل</h3>
+      <p>أدخل رمز الإدارة للمتابعة:</p>
+      <input type="password" id="admin-pin-input" inputmode="numeric" placeholder="أدخل الرمز هنا" maxlength="20" autocomplete="off">
+      <div id="pin-error-msg" class="pin-error"></div>
+      <div class="pin-dialog-actions">
+        <button id="submit-pin-btn" class="submit-pin-btn">تأكيد الدخول</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- لوحة الإدارة والتحكم -->
+  <aside class="admin-panel" aria-hidden="true">
+    <button class="close-admin" aria-label="إغلاق">×</button>
+    <h2>غرفة التعديل ✎</h2>
+    <div id="sync-status" class="sync-status">☁️ متزامن مع السيرفر</div>
+    <p>بعد إدخال الرمز، اضغط على أي نص وعدّله مباشرة وسيُحفظ لجميع الأجهزة تلقائياً. يمكن سحب الملصقات وتكبيرها.</p>
+    <div class="admin-actions">
+      <button id="save-server-btn" class="save-server-btn">💾 حفظ التعديلات الآن لجميع الأجهزة</button>
+      <button id="open-supabase-dialog" class="supabase-btn">⚡ ربط السحاب (Supabase)</button>
+      <div class="sticker-ctrls">
+        <button id="sticker-smaller">− تصغير ملصق</button>
+        <button id="sticker-larger">+ تكبير ملصق</button>
+      </div>
+      <button id="export-data">حفظ نسخة احتياطية (ملف)</button>
+      <label class="import-label">استرجاع نسخة من ملف<input id="import-data" type="file" accept="application/json"></label>
+      <button class="reset-data">استعادة النصوص الأصلية</button>
+      <button id="lock-admin" class="lock-admin">🔒 قفل وضع التعديل</button>
+    </div>
+  </aside>
+
+  <!-- تنبيه الحفظ -->
+  <div id="save-toast" class="save-toast" aria-hidden="true">تم الحفظ لجميع الأجهزة بنجاح ☁️</div>
+
+  <main id="gift-content" class="gift-locked">
+    <section class="opening" id="opening">
+      <div class="tiny-kitty">♡</div>
+      <div class="gift-box" aria-hidden="true"><i></i><b>🎀</b></div>
+      <div class="opening-copy">
+        <p data-editable data-edit-key="open-1">روجا...</p>
+        <p data-editable data-edit-key="open-2">أدري إني زعلتك وما كان ودي 💔</p>
+        <h1 data-editable data-edit-key="open-3">هل تقبلي اعتذاري؟ 🤍</h1>
+      </div>
+      <div class="no-stickers">
+        <img src="assets/هيلو كيتي/صور بدون خلفية/cry.png" alt="ملصق CRY">
+        <img src="assets/هيلو كيتي/صور بدون خلفية/start.png" alt="ملصق START">
+      </div>
+      <div class="choice">
+        <button class="yes" data-editable data-edit-key="open-yes">مسامحتك 🤍</button>
+        <button class="no" data-editable data-edit-key="open-no">لسه زعلانة 🥺</button>
+      </div>
+    </section>
+
+    <section class="chapter intro hidden" id="intro">
+      <p class="eyebrow" data-editable data-edit-key="intro-eyebrow">كلمات من القلب إلى القلب</p>
+      <h2 data-editable data-edit-key="intro-heading">زعلك غالي علي، ورضاك أغلى ما في الدنيا…<br>والله ما يهون علي خاطرك يا روجا.</h2>
+      <span class="scroll-note" data-editable data-edit-key="intro-scroll">انزلي بهدوء وشوفي 🤍 ↓</span>
+    </section>
+
+    <section class="scrapbook chapter" id="memories">
+      <div class="paper-top"><span data-editable data-edit-key="memories-top">أول الكلمات</span><i>✿</i></div>
+      <div class="memory-head">
+        <h2 data-editable data-edit-key="memories-title">ملامحك اللي تفرّح القلب</h2>
+        <p data-editable data-edit-key="memories-desc">ضحكتك ووجهك السمح، ما عاش والله من يغير لمعة عيونك الحلوة يا روجا.</p>
+      </div>
+      <div class="photo-wall childhood" data-folder="صغيره"></div>
+      <img class="admin-sticker sticker-one" data-sticker-id="sticker-1" src="assets/هيلو كيتي/صور بدون خلفية/01_هيلو_كيتي_فراولة.png" alt="ملصق Hello Kitty">
+      <img class="admin-sticker sticker-two" data-sticker-id="sticker-2" src="assets/هيلو كيتي/صور بدون خلفية/04_ملامح_وشريطة_هيلو_كيتي.png" alt="ملصق شريطة">
+      <p class="margin-note" data-editable data-edit-key="memories-margin">كل نظرة وكل ابتسامة فيك حياة 🤍</p>
+    </section>
+
+    <section class="scrapbook mini-albums chapter" id="albums">
+      <div class="album-title">
+        <p data-editable data-edit-key="albums-eyebrow">لأن الورد ما يليق إلا بالورد ✿</p>
+        <h2 data-editable data-edit-key="albums-heading">باقة اعتذار ورضا لعيونك الحلوة.</h2>
+      </div>
+      <div class="photo-wall album-wall" data-folder="flowers"></div>
+      <img class="admin-sticker sticker-three" data-sticker-id="sticker-3" src="assets/هيلو كيتي/صور بدون خلفية/15_هيلو_كيتي_كاميرا_تصوير.png" alt="ملصق Hello Kitty">
+    </section>
+
+    <section class="notes chapter">
+      <p class="eyebrow" data-editable data-edit-key="notes-eyebrow">رسائل تطييب خاطر من القلب</p>
+      <div class="notes-wrap">
+        <div class="note note-one" data-editable data-edit-key="note-1">"ما فيه شيء بالدنيا يستاهل يمر يوم وإنتِ شايلة بخاطرك مني."</div>
+        <div class="note note-two" data-editable data-edit-key="note-2">"أنا آسف على أي لحظة زعلتك فيها أو كنت سبب في ضيقة صدرك يا روجا."</div>
+        <div class="note note-three" data-editable data-edit-key="note-3">"رضاك وراحتك أهم عندي من أي خلاف، ومكانتك دايمًا فوق."</div>
+        <div class="note note-four" data-editable data-edit-key="note-4">"ضحكتك الحلوة هي اللي تحلي الأيام.. لا تحرميني منها 🤍."</div>
+      </div>
+      <div class="tape-strip"></div>
+    </section>
+
+    <section class="music chapter" id="music">
+      <p class="eyebrow" data-editable data-edit-key="music-eyebrow">أغاني تحبيها… لعلها تروق خاطرك 🎵</p>
+      <h2 data-editable data-edit-key="music-heading">لما تعجز الكلمات عن التعبير…</h2>
+      <div class="player-shell">
+        <div class="record-wrap">
+          <img class="album-art" alt="غلاف الأغنية">
+          <button class="vinyl" aria-label="تشغيل الأغنية"><span></span></button>
+        </div>
+        <div class="track-info">
+          <p class="now-playing" data-editable data-edit-key="music-now">اختاري أغنية لتسمعيها ♫</p>
+          <h3 class="track-title" data-editable data-edit-key="music-title">—</h3>
+          <p class="track-artist" data-editable data-edit-key="music-artist">—</p>
+          <div class="progress-wrap">
+            <span class="curr-time">0:00</span>
+            <div class="progress" role="slider" aria-label="شريط تقدم الأغنية">
+              <span></span>
+              <div class="prog-pin"></div>
+            </div>
+            <span class="total-time">0:00</span>
+          </div>
+          <button class="play-toggle" data-editable data-edit-key="music-play">تشغيل ♫</button>
+        </div>
+      </div>
+      <div class="track-list"></div>
+      <audio id="audio"></audio>
+    </section>
+
+    <section class="grown chapter">
+      <div class="grown-photo">
+        <img src="assets/صوره وهي كبيره/856457946_1671003321363337_447046625197626160_n.jpg" alt="روجا">
+        <span>✿</span>
+      </div>
+      <div class="grown-copy">
+        <p class="eyebrow" data-editable data-edit-key="grown-eyebrow">من بين كل الناس…</p>
+        <h2 data-editable data-edit-key="grown-heading">قلبك النقي ما يستاهل يزعل أبدًا.</h2>
+        <p data-editable data-edit-key="grown-desc">وهذي من أجمل الصور لروجا عندي.. عسى هالوجه ما يمر عليه زعل 🤍.</p>
+      </div>
+    </section>
+
+    <section class="letter chapter">
+      <p data-editable data-edit-key="letter-to">روجا،</p>
+      <h2 data-editable data-edit-key="letter-heading">حقك علي، وما عاش من يزعل خاطرك.</h2>
+      <div data-editable data-edit-key="letter-body">
+        <p>يمكن ما أكون دايمًا أعرَف أعبّر بالوقت الصح، أو خانتني التصرفات وخليت الزعل يدخل قلبك.. بس والله العظيم إن زعلك ما يهون علي أبدًا، ولا لحظة يا روجا.</p>
+        <p>أنتِ شخص غالي، نقي، ومكانتك في قلبي أكبر بكثير من أي خلاف أو موقف عابر. كل لحظة زعل بيننا تضيق بي الدنيا، لأن ضحكتك وراحتك هي الشيء اللي يهمّني بصدق.</p>
+        <p>سويت لك هالصفحات البسيطة عشان أقول لك: أنا آسف من كل قلبي.. آسف على كل كلمة أو تصرف ضايقك، وأتمنى تقبلي اعتذاري وتسامحيني.</p>
+        <p>ما طلبت إلا رضاك، وعسى هالوجه السمح والابتسامة الحلوة ما تفارقك أبدًا يا روجا 🤍.</p>
+      </div>
+      <p class="signature" data-editable data-edit-key="letter-signature">من شخص يتمنى رضاكِ وما يرتاح إلا بضحكتك 🎀🤍</p>
+    </section>
+
+    <section class="final-video chapter" id="final-card">
+      <div class="video-before">
+        <span>🤍</span>
+        <p data-editable data-edit-key="video-before-text">كلمة أخيرة ووعد من القلب... 🎀</p>
+        <button class="reveal-video" data-editable data-edit-key="video-reveal-btn">افتحي الوعد الأخير 🤍</button>
+      </div>
+      <div class="video-content apology-final-box" style="display: none; text-align: center; max-width: 650px; margin: 0 auto; padding: 35px 25px; background: rgba(255,255,255,0.85); border-radius: 24px; box-shadow: 0 10px 30px rgba(181, 78, 116, 0.15); border: 2px dashed #f4a9ba;">
+        <img src="assets/هيلو كيتي/صور بدون خلفية/12_هيلو_كيتي_تطل_من_شريطة_وردية.png" alt="Hello Kitty" style="max-width: 140px; margin-bottom: 15px;">
+        <h2 data-editable data-edit-key="video-title" style="font-family: var(--hand); font-size: clamp(1.8rem, 4vw, 2.6rem); color: #892c3a; margin-bottom: 15px;">وعد ما يتكرر الزعل.. وضحكتك تظل منوّرة دايمًا يا روجا 🤍🎀</h2>
+        <p style="font-size: 1.15rem; line-height: 1.9; color: #592c32; margin-bottom: 25px;">
+          صافية لبن؟ 🥺🤍<br>
+          ما في أحلى من طيبة قلبك، وعسى ربي ما يحرمني منك ولا من وجودك الجميل في حياتي.
+        </p>
+        <button id="forgive-btn" style="background: #d96b88; color: #fff; border: 0; padding: 14px 34px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(217, 107, 136, 0.4); cursor: pointer; transition: transform 0.2s;">صافية لبن وأكيد مسامحتك 🌸🤍</button>
+        <div id="forgive-msg" style="display: none; margin-top: 20px; font-size: 1.3rem; font-family: var(--hand); color: #d96b88; animation: arrive 0.5s forwards;">الحمد لله يارب.. والله وسعتي صدري ورديتي لي روحي! 🎀🥹✨</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="choice-scene" aria-hidden="true">
+    <div class="crying-kitty">
+      <img src="assets/هيلو كيتي/صور بدون خلفية/cry.png" alt="Hello Kitty تبكي">
+    </div>
+    <p data-editable data-edit-key="sad-text">والله زعلك ما يهون علي.. افتحي وشوفي 🥺🤍</p>
+    <button class="try-yes" data-editable data-edit-key="sad-btn">طيب بفتحها عشانك</button>
+  </div>
+
+  <div class="gift-reveal" aria-hidden="true">
+    <div class="gift-card">
+      <span style="font-size: 60px;">💌</span>
+      <p class="gift-line" data-editable data-edit-key="gift-line">اعتذار من كل قلبي 🤍</p>
+      <h2 class="gift-subline" data-editable data-edit-key="gift-subline">افتحي وشوفي إيش مجهز لك</h2>
+      <button class="open-gift" data-editable data-edit-key="open-gift-btn">افتحي الاعتذار</button>
+    </div>
+  </div>
+
+  <div class="lightbox">
+    <button>×</button>
+    <img alt="ذكرى مكبرة">
+    <p contenteditable="false"></p>
+  </div>
+
+  <!-- نافذة إعدادات Supabase السحابية -->
+  <div id="supabase-dialog" class="pin-dialog-backdrop" aria-hidden="true">
+    <div class="pin-dialog supabase-dialog-card">
+      <button class="close-pin-dialog" id="close-supabase-dialog" aria-label="إغلاق">×</button>
+      <div class="pin-icon">⚡ ☁️</div>
+      <h3>حفظ التعديلات أونلاين (Supabase)</h3>
+      <p>لحفظ التعديلات في السحاب والوصول إليها من أي جهاز في العالم:</p>
+      
+      <div class="supabase-form">
+        <label>Project URL (رابط المشروع):</label>
+        <input type="text" id="supabase-url-input" placeholder="https://xxxx.supabase.co" dir="ltr">
+        
+        <label>Anon Public Key (المفتاح العام):</label>
+        <input type="text" id="supabase-key-input" placeholder="eyJhbGciOiJIUz..." dir="ltr">
+        
+        <div id="supabase-status-msg" class="supabase-status-msg"></div>
+        
+        <div class="pin-dialog-actions">
+          <button id="save-supabase-btn" class="submit-pin-btn">تفعيل وربط السحاب الآن</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=5"></script>
+  <script src="app.js?v=5"></script>
+</body>
+</html>
