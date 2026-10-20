@@ -1,6 +1,6 @@
 const asset = 'assets/';
-const ADMIN_PIN = '20101123';
-let currentPin = sessionStorage.getItem('farah-admin-pin') || '';
+const ADMIN_PIN = '101010';
+let currentPin = sessionStorage.getItem('rouja-admin-pin') || '';
 
 // قاعدة بيانات التعديلات المتزامنة
 let siteData = {
@@ -517,7 +517,7 @@ function verifyAndEnterAdmin() {
   const entered = (pinInput?.value || '').trim();
   if (entered === ADMIN_PIN) {
     currentPin = ADMIN_PIN;
-    sessionStorage.setItem('farah-admin-pin', currentPin);
+    sessionStorage.setItem('rouja-admin-pin', currentPin);
     closePinDialog();
     enterAdminMode();
     showToast('مرحباً بك في وضع التعديل 🎀✎');
@@ -569,7 +569,7 @@ const lockBtn = document.querySelector('#lock-admin');
 if (lockBtn) {
   lockBtn.onclick = () => {
     currentPin = '';
-    sessionStorage.removeItem('farah-admin-pin');
+    sessionStorage.removeItem('rouja-admin-pin');
     exitAdminMode();
     showToast('تم قفل وضع التعديل 🔒');
   };
