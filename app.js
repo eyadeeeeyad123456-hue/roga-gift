@@ -290,17 +290,25 @@ function getSupabaseSettings() {
 
 // جلب البيانات من Supabase مباشرة
 async function fetchFromSupabase(cfg) {
-  const url = `${cfg.url}/rest/v1/${cfg.tableName || 'site_data'}?id=eq.${cfg.recordId || 'farah_scrapbook'}&select=*`;
-  const res = await fetch(url, {
-    headers: {
-      'apikey': cfg.anonKey,
-      'Authorization': 'Bearer ' + cfg.anonKey
+  try {
+    const url = `${cfg.url}/rest/v1/${cfg.tableName || 'site_data'}?id=eq.${cfg.recordId || 'rouja_scrapbook'}&select=*`;
+    const res = await fetch(url, {
+      headers: {
+        'apikey': cfg.anonKey,
+        'Authorization': 'Bearer ' + cfg.anonKey
+      }
+    });
+    if (!res.ok) {
+      if (res.status === 404) return null;
+      throw new Error('فشل جلب البيانات: ' + res.status);
     }
-  });
-  if (!res.ok) throw new Error('فشل جلب البيانات من Supabase: ' + res.status);
-  const rows = await res.json();
-  if (Array.isArray(rows) && rows.length > 0 && rows[0].data) {
-    return rows[0].data;
+    const rows = await res.json();
+    if (Array.isArray(rows) && rows.length > 0 && rows[0].data) {
+      return rows[0].data;
+    }
+  } catch (e) {
+    // تجاهل في حالة عدم إنشاء الجدول بعد
+    return null;
   }
   return {};
 }
@@ -317,7 +325,7 @@ async function upsertToSupabase(cfg, dataToSave) {
       'Prefer': 'resolution=merge-duplicates'
     },
     body: JSON.stringify({
-      id: cfg.recordId || 'farah_scrapbook',
+      id: cfg.recordId || 'rouja_scrapbook',
       data: dataToSave,
       updated_at: new Date().toISOString()
     })
